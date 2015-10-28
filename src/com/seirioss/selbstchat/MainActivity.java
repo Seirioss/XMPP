@@ -24,13 +24,13 @@ public class MainActivity extends Activity{
 	private Button sendButton;
 	private Button connectButton;
 	
-	private ChatManagment chatManagment = new ChatManagment();
+	//private ChatManagment chatManagment = new ChatManagment();
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		Log.e("selbstChat", "startActivity");
+        
         received = (TextView)findViewById(R.id.msgreceived);
         sending = (EditText)findViewById(R.id.msgsending);
         sendButton = (Button)findViewById(R.id.sendbutton);
@@ -41,7 +41,7 @@ public class MainActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				chatManagment.sendMessage(sending.getText().toString(), "test1");
+				//chatManagment.sendMessage(sending.getText().toString(), "test1");
 			}
 		});
     }
