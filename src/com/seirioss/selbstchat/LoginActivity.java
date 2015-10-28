@@ -60,14 +60,14 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (usernameEditText.getText().equals(null)) {
+				if (usernameEditText.getText().toString().equals(null)) {
 					Toast.makeText(LoginActivity.this, "Please input Username", Toast.LENGTH_SHORT).show();
-				}else if (passwordEditText.getText().equals(null)) {
+				}else if (passwordEditText.getText().toString().equals(null)) {
 					Toast.makeText(LoginActivity.this, "Please input Password", Toast.LENGTH_SHORT).show();
-				}//else if (connectionCheck.isRightAccount(usernameEditText.getText().toString(), passwordEditText.getText().toString())) {
-				 //	Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-				 //	startActivity(intent);
-				//}
+				}else if (connectionCheck.isLogin()) {
+				 	Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+				 	startActivity(intent);
+				}
 			}
 		});
 	}

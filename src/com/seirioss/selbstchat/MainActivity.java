@@ -24,11 +24,13 @@ public class MainActivity extends Activity{
 	private Button sendButton;
 	private Button connectButton;
 	
+	private ChatManagment chatManagment = new ChatManagment();
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+		Log.e("selbstChat", "startActivity");
         received = (TextView)findViewById(R.id.msgreceived);
         sending = (EditText)findViewById(R.id.msgsending);
         sendButton = (Button)findViewById(R.id.sendbutton);
@@ -39,14 +41,7 @@ public class MainActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				/*if (ConnectionCheck.isNetworkConnected(MainActivity.this)) {
-					Toast.makeText(MainActivity.this, "APP is Online", Toast.LENGTH_SHORT).show();
-					if (ConnectionCheck.conServer()) {     //在openfire服务器上注册
-						Toast.makeText(MainActivity.this, "Already Sign in!", Toast.LENGTH_SHORT).show();
-					}
-				}else {
-					Toast.makeText(MainActivity.this, "APP is Offline", Toast.LENGTH_SHORT).show();
-				} */
+				chatManagment.sendMessage(sending.getText().toString(), "test1");
 			}
 		});
     }

@@ -52,43 +52,19 @@ public class ConnectionCheck {
 		return false;
 	}
 	
-	/*public boolean isRightAccount(String username, String password) {
-		if (username.equals("seirioss") && password.equals("zdsaz689")) {
-			try {
-				connection.login(username, password);
-				return true;
-			} catch (XMPPException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		} else {
-			return false;
-		}
-	}*/
-
-	public boolean conServer() {
-		ConnectionConfiguration config = new ConnectionConfiguration(Constant.LOCALHOST, Constant.PORT);
-		config.setSASLAuthenticationEnabled(false);	
+	public boolean isLogin() {
 		try {
-			connection = new XMPPConnection(config);
-			connection.connect();	
-			try {
-				if (connection == null) {				
-					return false;
-				}else {
-					connection.login("seirioss", "zdsaz689");
-					return true;
-				}
-			} catch (XMPPException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-			return false;
+			connection.login("seirioss", "zdsaz689");
+			return true;
 		} catch (XMPPException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public XMPPConnection getConnection() {
+		return connection;
 	}
 	
 }
