@@ -14,11 +14,13 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 
+import android.util.Log;
+
 
 public class ChatManagment {
 	
 	private XMPPConnection connection;
-	private ConnectionCheck connectionCheck;
+	private ConnectionCheck connectionCheck = new ConnectionCheck();
 	
 	private ChatManager chatManager;
 	
@@ -26,10 +28,10 @@ public class ChatManagment {
 	
 	public ChatManagment() {
 		connection = connectionCheck.getConnection();
+		chatManager = connection.getChatManager();
 	}
 	
 	public void receiveMessage() {
-		chatManager = connection.getChatManager();
 		chatManager.addChatListener(new ChatManagerListener() {
 			
 			@Override
@@ -55,20 +57,14 @@ public class ChatManagment {
 	
 	
 	public void sendMessage(final String msg, String to) {
-		chat = chatManager.createChat(to, null);
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				try {
-					chat.sendMessage(msg);
-				} catch (XMPPException e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
-			}
-		}).start();
+		chat = chatManager.createChat(to + "@" + connection.getServiceName(), null);
+		try {
+			Log.e("selbstChat", "sendingMessage");
+			chat.sendMessage(msg);
+		} catch (XMPPException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
 	

@@ -26,7 +26,7 @@ public class ConnectionCheck {
 		try {
 			connection = new XMPPConnection(config);
 			connection.connect();
-		//	connection.login("seirioss", "zdsaz689");
+			connection.login("seirioss", "zdsaz689");
 		//	connection.login("seirioss", "zdsaz689");
 		} catch (XMPPException e) {
 			// TODO: handle exception
@@ -54,6 +54,7 @@ public class ConnectionCheck {
 	
 	public boolean isLogin() {
 		try {
+			Log.e("selbstChat", "Log in!");
 			connection.login("seirioss", "zdsaz689");
 			return true;
 		} catch (XMPPException e) {

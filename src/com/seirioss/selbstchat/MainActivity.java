@@ -23,9 +23,7 @@ public class MainActivity extends Activity{
 	private EditText sending;
 	private Button sendButton;
 	private Button connectButton;
-	
-	//private ChatManagment chatManagment = new ChatManagment();
-	
+		
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +42,22 @@ public class MainActivity extends Activity{
 				//chatManagment.sendMessage(sending.getText().toString(), "test1");
 			}
 		});
+        
+        new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Looper.prepare();
+				ChatManagment chatManagment = new ChatManagment();
+				chatManagment.sendMessage("HelloWorld", "test1");
+				Looper.loop();
+			}
+		}).start();
     }
     
+
+  
    
 
     @Override

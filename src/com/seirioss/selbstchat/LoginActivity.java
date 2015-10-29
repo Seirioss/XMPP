@@ -43,7 +43,6 @@ public class LoginActivity extends Activity {
 		}else {
 			if (connectionCheck.isConnectToServer()) {
 				Toast.makeText(LoginActivity.this, "Server Online!", Toast.LENGTH_SHORT);
-				Log.e("SelbstChat", "Server Online!");
 			}else Toast.makeText(LoginActivity.this, "Server Offline!", Toast.LENGTH_SHORT).show();
 		}
 		        Looper.loop();
@@ -64,7 +63,7 @@ public class LoginActivity extends Activity {
 					Toast.makeText(LoginActivity.this, "Please input Username", Toast.LENGTH_SHORT).show();
 				}else if (passwordEditText.getText().toString().equals(null)) {
 					Toast.makeText(LoginActivity.this, "Please input Password", Toast.LENGTH_SHORT).show();
-				}else if (connectionCheck.isLogin()) {
+				}else if (true) {
 				 	Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 				 	startActivity(intent);
 				}
