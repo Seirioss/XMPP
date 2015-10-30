@@ -57,7 +57,7 @@ public class ChatManagment {
 	
 	
 	public void sendMessage(final String msg, String to) {
-		chat = chatManager.createChat(to + "@" + connection.getServiceName(), null);
+		chat = chatManager.createChat(to + "@dell" , null);
 		try {
 			Log.e("selbstChat", "sendingMessage");
 			chat.sendMessage(msg);
@@ -66,6 +66,5 @@ public class ChatManagment {
 			e.printStackTrace();
 		}
 	}
-
 	
 }

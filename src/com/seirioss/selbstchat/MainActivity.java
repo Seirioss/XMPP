@@ -1,9 +1,12 @@
 package com.seirioss.selbstchat;
 
+import java.security.PublicKey;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +25,9 @@ public class MainActivity extends Activity{
 	private TextView received;
 	private EditText sending;
 	private Button sendButton;
-	private Button connectButton;
+	
+	private MyThread myThread = new MyThread();
+	private Handler handler;
 		
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,33 +37,35 @@ public class MainActivity extends Activity{
         received = (TextView)findViewById(R.id.msgreceived);
         sending = (EditText)findViewById(R.id.msgsending);
         sendButton = (Button)findViewById(R.id.sendbutton);
-        connectButton = (Button)findViewById(R.id.connection);
-        
-        connectButton.setOnClickListener(new OnClickListener() {
+            
+        sendButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//chatManagment.sendMessage(sending.getText().toString(), "test1");
+                Message sendMsg = Message.obtain();
+                sendMsg.obj = "helloWorld!";
+                //handler.sendMessage(sendMsg);
+                myThread.start();
+                Log.e("selbstChat", "HelloWorld!");
 			}
-		});
-        
-        new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Looper.prepare();
-				ChatManagment chatManagment = new ChatManagment();
-				chatManagment.sendMessage("HelloWorld", "test1");
-				Looper.loop();
-			}
-		}).start();
+    });
     }
     
+    class MyThread extends Thread{
 
-  
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			Looper.prepare();
+			ChatManagment chatManagment = new ChatManagment();
+			chatManagment.sendMessage("HelloWorld!", "test1");
+			Looper.loop();
+		}
+    	
+    }
    
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
